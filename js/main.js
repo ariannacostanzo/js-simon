@@ -13,10 +13,13 @@ const form = document.querySelector('form');
 const inputsElements = document.querySelectorAll('input');
 const inputsContainer = document.getElementById('input-container');
 const resultElement = document.getElementById('result');
-const rightAnswersContainer = document.getElementById('right-answers')
+const rightAnswersContainer = document.getElementById('right-answers');
+const button = document.querySelector('button')
 const randomNumbers = [];
 const userNumbers = [];
 const rightAnswers = [];
+
+
 //!----------------------------
 //!funzioni
 //!----------------------------
@@ -58,7 +61,6 @@ const showInputs = () => {
 
 
 
-
 //!-----------------------------
 //!SVOLGIMENTO DELLA LOGICA
 //!-----------------------------
@@ -69,7 +71,7 @@ generateRandomNumbers();
 
 
 //Setto il countdown
-let countdown = 3;
+let countdown = 30;
 countdownContainer.innerText = countdown;
 
 //Gestisco il countdown
@@ -93,21 +95,15 @@ const countdownInterval = setInterval( () => {
 },1000)
 
 
-//gestisco il required nell'input
-
-for (let input of inputsElements) {
-    //! invece di inserire required nell'html (che potrebbe essere tolto) lo inserisco qui
-    input.required = true;
-    
-}
-
 form.addEventListener('submit', (e) => {
-    
+    button.disabled = true;
     e.preventDefault();
     let message;
 
     //raccolgo gli input value
     for (let input of inputsElements) {
+        //! invece di inserire required nell'html (che potrebbe essere tolto) lo inserisco qui
+        input.required = true;
         const inputValue = parseInt(input.value)
         userNumbers.push(inputValue);
         
@@ -126,6 +122,16 @@ form.addEventListener('submit', (e) => {
 
         } 
 
+        // if (randomNumbers.includes(userNumbers[i]) ) {
+        //     rightAnswers.push(userNumbers[i]);
+
+        //     //creo una lista con i numeri indovinati
+        //     const list = document.createElement('li');
+        //     list.innerHTML = `<strong>${randomNumbers[i]}</strong>;`;
+        //     rightAnswersContainer.appendChild(list)
+
+        // } 
+
 
     }
 
@@ -141,3 +147,4 @@ form.addEventListener('submit', (e) => {
 });
 
 //da fare la validazione degli input 
+//sistemare che i numeri sono giusti anche se in posizione diversa
