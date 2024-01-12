@@ -13,6 +13,7 @@ const form = document.querySelector('form');
 const inputsElements = document.querySelectorAll('input');
 const inputsContainer = document.getElementById('input-container');
 const resultElement = document.getElementById('result');
+const rightAnswersContainer = document.getElementById('right-answers')
 const randomNumbers = [];
 const userNumbers = [];
 const rightAnswers = [];
@@ -68,7 +69,7 @@ generateRandomNumbers();
 
 
 //Setto il countdown
-let countdown = 5;
+let countdown = 3;
 countdownContainer.innerText = countdown;
 
 //Gestisco il countdown
@@ -104,31 +105,39 @@ form.addEventListener('submit', (e) => {
     
     e.preventDefault();
     let message;
-    let rightNumber = '';
 
+    //raccolgo gli input value
     for (let input of inputsElements) {
         const inputValue = parseInt(input.value)
         userNumbers.push(inputValue);
         
     }
 
-
+    //controllo se l'input è uguale ai numeri nella stessa posizione
     for (let i = 0; i < randomNumbers.length; i++) {
 
         if (randomNumbers[i] === userNumbers[i]) {
             rightAnswers.push(randomNumbers[i]);
-            
-            rightNumber += `<strong>${rightAnswers[i]}</strong>, `
-            logSomething(rightNumber)
+
+            //creo una lista con i numeri indovinati
+            const list = document.createElement('li');
+            list.innerHTML = `<strong>${randomNumbers[i]}</strong>;`;
+            rightAnswersContainer.appendChild(list)
 
         } 
 
-        
 
     }
 
-    message = `Hai indovinato <strong>${rightAnswers.length}</strong> numeri: ${rightNumber}`
+    message = `Hai indovinato <strong>${rightAnswers.length}</strong> numeri: `
+
+    if (rightAnswers.length <= 0){
+        message = 'Non hai indovinato neanche un numero!'
+    }
+    
 
     resultElement.innerHTML = message;
 
 });
+
+//da fare la validazione degli input 
