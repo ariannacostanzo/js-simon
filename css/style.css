@@ -5,3 +5,36 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+/* Generics */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+ul li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/* content */
+
+main {
+    text-align: center;
+    width: 50%;
+    margin: 5rem auto;
+}
+
+#countdown {
+    font-weight: bold;
+    font-size: 4rem;
+}
+
+#numbers-container {
+    padding: 0;
+    margin-top: 3rem;
+    font-size: 3rem;
+}
