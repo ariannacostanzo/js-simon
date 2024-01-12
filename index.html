@@ -11,15 +11,21 @@
 </head>
 <body>
     <main>
-        <p id="countdown">0</p>
-        <ul id="numbers-container" class="d-flex align-items-center justify-content-between">
-            <!-- <li>5</li>
-            <li>5</li>
-            <li>5</li>
-            <li>5</li>
-            <li>5</li> -->
-        </ul>
+        <p id="countdown"></p>
+        <ul id="numbers-container" class="d-flex align-items-center justify-content-between"></ul>
 
+        <!-- input container -->
+        <form id="input-container" class="d-none">
+            <div  class="d-flex align-items-center justify-content-between">
+                <input type="number" class="input-numbers">
+                <input type="number" class="input-numbers">
+                <input type="number" class="input-numbers">
+                <input type="number" class="input-numbers">
+                <input type="number" class="input-numbers">
+            </div>
+            <button class="btn btn-primary mt-5">Conferma</button>
+        </form>
+        <p id="result" class="mt-5"></p>
     </main>
     
     <!-- script -->

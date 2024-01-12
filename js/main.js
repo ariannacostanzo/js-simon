@@ -9,7 +9,13 @@ const logSomething = (something) => console.log(something);
 //!Raccolgo tutti gli elementi della pagina che mi servono
 const numbersContainer = document.getElementById('numbers-container');
 const countdownContainer = document.getElementById('countdown');
-
+const form = document.querySelector('form');
+const inputsElements = document.querySelectorAll('input');
+const inputsContainer = document.getElementById('input-container');
+const resultElement = document.getElementById('result');
+const randomNumbers = [];
+const userNumbers = [];
+const rightAnswers = [];
 //!----------------------------
 //!funzioni
 //!----------------------------
@@ -17,7 +23,6 @@ const countdownContainer = document.getElementById('countdown');
 //Genero 5 numeri casuali diversi e li inserisco in elementi liste, mostro tutto in pagina
 const generateRandomNumbers = () => {
 
-    const randomNumbers = [];
     
     while (randomNumbers.length < 5) {
         
@@ -41,10 +46,16 @@ const generateRandomNumbers = () => {
 
 //nascondo tutto al fine countdown
 
-const hideEverything = () => {
+const hideNumbers = () => {
     countdownContainer.classList.add('d-none');
     numbersContainer.classList.add('d-none');
 };
+
+const showInputs = () => {
+    inputsContainer.classList.remove('d-none');
+}
+
+
 
 
 //!-----------------------------
@@ -55,23 +66,69 @@ const hideEverything = () => {
 generateRandomNumbers();
 
 
-//Gestisco il countdown
+
+//Setto il countdown
 let countdown = 5;
 countdownContainer.innerText = countdown;
 
+//Gestisco il countdown
 const countdownInterval = setInterval( () => {
     countdownContainer.innerText = --countdown;
 
     //quando il countdown arriva a 0 finisce l'intervallo countdown
     if (countdown === 0) {
-        
+
         clearInterval(countdownInterval);
 
         //nascondo tutto dopo mezzo secondo altrimenti non vedo nemmeno lo 0
-        setTimeout(hideEverything, 500)
+        setTimeout(hideNumbers, 500);
+        setTimeout(showInputs, 500);
+        
         
     }
 
 
 
 },1000)
+
+
+//gestisco il required nell'input
+
+for (let input of inputsElements) {
+    //! invece di inserire required nell'html (che potrebbe essere tolto) lo inserisco qui
+    input.required = true;
+    
+}
+
+form.addEventListener('submit', (e) => {
+    
+    e.preventDefault();
+    let message;
+    let rightNumber = '';
+
+    for (let input of inputsElements) {
+        const inputValue = parseInt(input.value)
+        userNumbers.push(inputValue);
+        
+    }
+
+
+    for (let i = 0; i < randomNumbers.length; i++) {
+
+        if (randomNumbers[i] === userNumbers[i]) {
+            rightAnswers.push(randomNumbers[i]);
+            
+            rightNumber += `<strong>${rightAnswers[i]}</strong>, `
+            logSomething(rightNumber)
+
+        } 
+
+        
+
+    }
+
+    message = `Hai indovinato <strong>${rightAnswers.length}</strong> numeri: ${rightNumber}`
+
+    resultElement.innerHTML = message;
+
+});
