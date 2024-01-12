@@ -8,11 +8,13 @@ const logSomething = (something) => console.log(something);
 
 //!Raccolgo tutti gli elementi della pagina che mi servono
 const numbersContainer = document.getElementById('numbers-container');
+const countdownContainer = document.getElementById('countdown');
 
 //!----------------------------
 //!funzioni
 //!----------------------------
 
+//Genero 5 numeri casuali diversi e li inserisco in elementi liste, mostro tutto in pagina
 const generateRandomNumbers = () => {
 
     const randomNumbers = [];
@@ -37,6 +39,14 @@ const generateRandomNumbers = () => {
     return randomNumbers;
 }
 
+//nascondo tutto al fine countdown
+
+const hideEverything = () => {
+    countdownContainer.classList.add('d-none');
+    numbersContainer.classList.add('d-none');
+};
+
+
 //!-----------------------------
 //!SVOLGIMENTO DELLA LOGICA
 //!-----------------------------
@@ -44,3 +54,24 @@ const generateRandomNumbers = () => {
 //All'avvio della pagina genero 5 numeri casuali diversi (potrei mettere un button che fa iniziare tutto)
 generateRandomNumbers();
 
+
+//Gestisco il countdown
+let countdown = 5;
+countdownContainer.innerText = countdown;
+
+const countdownInterval = setInterval( () => {
+    countdownContainer.innerText = --countdown;
+
+    //quando il countdown arriva a 0 finisce l'intervallo countdown
+    if (countdown === 0) {
+        
+        clearInterval(countdownInterval);
+
+        //nascondo tutto dopo mezzo secondo altrimenti non vedo nemmeno lo 0
+        setTimeout(hideEverything, 500)
+        
+    }
+
+
+
+},1000)
