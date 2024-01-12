@@ -5,3 +5,26 @@ const logSomething = (something) => console.log(something);
 // * 3. Quando il timer arriva a 0 devo fare sparire i numeri e fare comparire 5 input
 // * 4. I valori che l'utente inserisce negli input devono essere confrontati con i numeri casuali generati
 // * 5. In base agli input dell'utente faccio apparire in pagina un messaggio relativo al risultato
+
+const generateRandomNumbers = () => {
+
+    const randomNumbers = [];
+    
+    while (randomNumbers.length < 5) {
+        
+        const randomNumber = Math.floor(Math.random() * 100) +1;
+        
+        if (!randomNumbers.includes(randomNumber)) {
+            randomNumbers.push(randomNumber);
+            
+        }
+
+    }
+    logSomething(randomNumbers)
+
+    
+    return randomNumbers;
+}
+
+
+generateRandomNumbers();
