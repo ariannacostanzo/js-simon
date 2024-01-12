@@ -31,11 +31,11 @@ main {
 
 #countdown {
     font-weight: bold;
-    font-size: 4rem;
+    font-size: 5rem;
 }
 
 #numbers-container {
     padding: 0;
     margin-top: 3rem;
-    font-size: 3rem;
+    font-size: 4rem;
 }
