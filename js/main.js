@@ -94,6 +94,13 @@ const countdownInterval = setInterval( () => {
 
 },1000)
 
+for (let input of inputsElements) {
+    //! invece di inserire required nell'html (che potrebbe essere tolto) lo inserisco qui
+    input.required = true;
+    
+    
+}
+
 
 form.addEventListener('submit', (e) => {
     button.disabled = true;
@@ -102,8 +109,7 @@ form.addEventListener('submit', (e) => {
 
     //raccolgo gli input value
     for (let input of inputsElements) {
-        //! invece di inserire required nell'html (che potrebbe essere tolto) lo inserisco qui
-        input.required = true;
+        
         const inputValue = parseInt(input.value)
         userNumbers.push(inputValue);
         
@@ -135,7 +141,7 @@ form.addEventListener('submit', (e) => {
 
     }
 
-    message = `Hai indovinato <strong>${rightAnswers.length}</strong> numeri: `
+    message = `Hai indovinato <strong>${rightAnswers.length}</strong> numero/i su 5: `
 
     if (rightAnswers.length <= 0){
         message = 'Non hai indovinato neanche un numero!'
@@ -148,3 +154,5 @@ form.addEventListener('submit', (e) => {
 
 //da fare la validazione degli input 
 //sistemare che i numeri sono giusti anche se in posizione diversa
+//fare un bottone che mi fa ricominciare tutto quando finisce il gioco
+//

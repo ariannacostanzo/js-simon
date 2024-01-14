@@ -10,6 +10,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(131, 182, 166);
 }
 
 ul li {
@@ -39,6 +40,8 @@ main {
     margin-top: 3rem;
     font-size: 4rem;
     text-align: center;
+    text-shadow: 0 0 10px black;
+    color: white;
 }
 
 /* input */
@@ -49,6 +52,9 @@ main {
 
 input[type=number] {
     width: 90px;
+    border: 2px solid white;
+    border-radius: 25px;
+    text-indent: 15px;
 }
 
 #right-answers {
