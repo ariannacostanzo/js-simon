@@ -10,6 +10,7 @@ const logSomething = (something) => console.log(something);
 const numbersContainer = document.getElementById('numbers-container');
 const countdownContainer = document.getElementById('countdown');
 const form = document.querySelector('form');
+const instructionElement = document.getElementById('instruction');
 const inputsElements = document.querySelectorAll('input');
 const inputsContainer = document.getElementById('input-container');
 const resultElement = document.getElementById('result');
@@ -84,8 +85,12 @@ const countdownInterval = setInterval( () => {
         clearInterval(countdownInterval);
 
         //nascondo tutto dopo mezzo secondo altrimenti non vedo nemmeno lo 0
-        setTimeout(hideNumbers, 500);
-        setTimeout(showInputs, 500);
+        setTimeout(() => {
+            instructionElement.innerText = 'Adesso riscrivi i numeri che ricordi nelle corrispettive caselle'
+            hideNumbers();
+            showInputs();
+        },500)
+        
         
         
     }
@@ -150,9 +155,10 @@ form.addEventListener('submit', (e) => {
 
     resultElement.innerHTML = message;
 
+    
+
 });
 
 //da fare la validazione degli input 
 //sistemare che i numeri sono giusti anche se in posizione diversa
 //fare un bottone che mi fa ricominciare tutto quando finisce il gioco
-//
